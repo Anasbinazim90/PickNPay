@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:shop/entry_point.dart';
-import 'package:shop/route/route_constants.dart';
 import 'package:shop/route/screen_export.dart';
 import 'package:shop/screens/auth/views/forgot_password.dart';
 
