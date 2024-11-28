@@ -43,7 +43,7 @@ class ProductQuantity extends StatelessWidget {
               width: 40,
               child: Center(
                 child: Text(
-                  numOfItem.toString(),
+                  "1",
                   style: Theme.of(context)
                       .textTheme
                       .titleMedium!

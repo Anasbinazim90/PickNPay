@@ -7,6 +7,7 @@
 .atom/
 .buildlog/
 .history
+env_file.env
 .svn/
 
 # IntelliJ related
@@ -31,7 +32,6 @@
 /build/
 
 # Web related
-lib/generated_plugin_registrant.dart
 
 # Symbolication related
 app.*.symbols

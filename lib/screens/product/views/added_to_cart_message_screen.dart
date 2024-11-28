@@ -44,7 +44,9 @@ class AddedToCartMessageScreen extends StatelessWidget {
               ),
               const SizedBox(height: defaultPadding),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.toNamed(AppRoutes.registerScreen);
+                },
                 child: const Text("Checkout"),
               ),
               const Spacer(),

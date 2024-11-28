@@ -1,15 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:form_field_validator/form_field_validator.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-// Just for demo
-const productDemoImg1 = "https://i.imgur.com/CGCyp1d.png";
-const productDemoImg2 = "https://i.imgur.com/AkzWQuJ.png";
-const productDemoImg3 = "https://i.imgur.com/J7mGZ12.png";
-const productDemoImg4 = "https://i.imgur.com/q9oF9Yq.png";
-const productDemoImg5 = "https://i.imgur.com/MsppAcx.png";
-const productDemoImg6 = "https://i.imgur.com/JfyZlnO.png";
-
-// End For demo
 
 const grandisExtendedFont = "Grandis Extended";
 
@@ -64,18 +55,14 @@ const Color errorColor = Color(0xFFEA5B5B);
 
 const double defaultPadding = 16.0;
 const double defaultBorderRadious = 12.0;
+var horizontalPadding = 30.w;
+var verticalPadding = 10.h;
+var radius = BorderRadius.circular(8);
+var boxShadow = [
+  BoxShadow(
+    color: primaryColor,
+    blurRadius: 10,
+  ),
+];
 const Duration defaultDuration = Duration(milliseconds: 300);
 
-final passwordValidator = MultiValidator([
-  RequiredValidator(errorText: 'Password is required'),
-  MinLengthValidator(8, errorText: 'password must be at least 8 digits long'),
-  PatternValidator(r'(?=.*?[#?!@$%^&*-])',
-      errorText: 'passwords must have at least one special character')
-]);
-
-final emaildValidator = MultiValidator([
-  RequiredValidator(errorText: 'Email is required'),
-  EmailValidator(errorText: "Enter a valid email address"),
-]);
-
-const pasNotMatchErrorText = "passwords do not match";
