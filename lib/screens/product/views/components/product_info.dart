@@ -16,7 +16,7 @@ class ProductInfo extends StatelessWidget {
   });
 
   final String title, brand, description;
-  final double rating;
+  final dynamic rating;
   final int numOfReviews;
   final bool isAvailable;
 

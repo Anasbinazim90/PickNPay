@@ -4,6 +4,7 @@ import '../constants.dart';
 
 const AppBarTheme appBarLightTheme = AppBarTheme(
   backgroundColor: Colors.white,
+  scrolledUnderElevation: 0,
   elevation: 0,
   iconTheme: IconThemeData(color: blackColor),
   titleTextStyle: TextStyle(
@@ -13,16 +14,16 @@ const AppBarTheme appBarLightTheme = AppBarTheme(
   ),
 );
 
-const AppBarTheme appBarDarkTheme = AppBarTheme(
-  backgroundColor: blackColor,
-  elevation: 0,
-  iconTheme: IconThemeData(color: Colors.white),
-  titleTextStyle: TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeight.w500,
-    color: Colors.white,
-  ),
-);
+// const AppBarTheme appBarDarkTheme = AppBarTheme(
+//   backgroundColor: blackColor,
+//   elevation: 0,
+//   iconTheme: IconThemeData(color: Colors.white),
+//   titleTextStyle: TextStyle(
+//     fontSize: 16,
+//     fontWeight: FontWeight.w500,
+//     color: Colors.white,
+//   ),
+// );
 
 ScrollbarThemeData scrollbarThemeData = ScrollbarThemeData(
   trackColor: WidgetStateProperty.all(primaryColor),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shop/constants.dart';
 import 'package:shop/route/screen_export.dart';
+import 'package:shop/screens/appbar/appbar.dart';
 
 class EntryPoint extends StatefulWidget {
   const EntryPoint({super.key});
@@ -16,7 +17,6 @@ class _EntryPointState extends State<EntryPoint> {
     const HomeScreen(),
     const DiscoverScreen(),
     const BookmarkScreen(),
-    CartScreen(),
     const ProfileScreen(),
   ];
   int _currentIndex = 0;
@@ -36,48 +36,50 @@ class _EntryPointState extends State<EntryPoint> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        // pinned: true,
-        // floating: true,
-        // snap: true,
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        leading: const SizedBox(),
-        leadingWidth: 0,
-        centerTitle: false,
-        title: SvgPicture.asset(
-          "assets/logo/picknpay.svg",
-          colorFilter: ColorFilter.mode(
-              Theme.of(context).iconTheme.color!, BlendMode.srcIn),
-          height: 30,
-          width: 100,
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              // Navigator.pushNamed(context, searchScreenRoute);
-            },
-            icon: SvgPicture.asset(
-              "assets/icons/Search.svg",
-              height: 24,
-              colorFilter: ColorFilter.mode(
-                  Theme.of(context).textTheme.bodyLarge!.color!,
-                  BlendMode.srcIn),
-            ),
-          ),
-          IconButton(
-            onPressed: () {
-              // Navigator.pushNamed(context, notificationsScreenRoute);
-            },
-            icon: SvgPicture.asset(
-              "assets/icons/Notification.svg",
-              height: 24,
-              colorFilter: ColorFilter.mode(
-                  Theme.of(context).textTheme.bodyLarge!.color!,
-                  BlendMode.srcIn),
-            ),
-          ),
-        ],
-      ),
+      appBar: PreferredSize(preferredSize: Size.fromHeight(100), child: AppbarScreen()),
+      // appBar: AppBar(
+      //   // pinned: true,
+      //   // floating: true,
+      //   // snap: true,
+      //   scrolledUnderElevation: 0,
+      //   backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      //   leading: const SizedBox(),
+      //   leadingWidth: 0,
+      //   centerTitle: false,
+      //   title: SvgPicture.asset(
+      //     "assets/logo/picknpay.svg",
+      //     colorFilter: ColorFilter.mode(
+      //         Theme.of(context).iconTheme.color!, BlendMode.srcIn),
+      //     height: 30,
+      //     width: 100,
+      //   ),
+      //   actions: [
+      //     IconButton(
+      //       onPressed: () {
+      //         // Navigator.pushNamed(context, searchScreenRoute);
+      //       },
+      //       icon: SvgPicture.asset(
+      //         "assets/icons/Search.svg",
+      //         height: 24,
+      //         colorFilter: ColorFilter.mode(
+      //             Theme.of(context).textTheme.bodyLarge!.color!,
+      //             BlendMode.srcIn),
+      //       ),
+      //     ),
+      //     IconButton(
+      //       onPressed: () {
+      //         Get.toNamed(AppRoutes.cartScreen);
+      //       },
+      //       icon: SvgPicture.asset(
+      //         "assets/icons/Bag.svg",
+      //         height: 24,
+      //         colorFilter: ColorFilter.mode(
+      //             Theme.of(context).textTheme.bodyLarge!.color!,
+      //             BlendMode.srcIn),
+      //       ),
+      //     ),
+      //   ],
+      // ),
       // body: _pages[_currentIndex],
       body: PageTransitionSwitcher(
         duration: defaultDuration,
@@ -116,7 +118,7 @@ class _EntryPointState extends State<EntryPoint> {
             BottomNavigationBarItem(
               icon: svgIcon("assets/icons/Shop.svg"),
               activeIcon: svgIcon("assets/icons/Shop.svg", color: primaryColor),
-              label: "Shop",
+              label: "Home",
             ),
             BottomNavigationBarItem(
               icon: svgIcon("assets/icons/Category.svg"),
@@ -130,11 +132,7 @@ class _EntryPointState extends State<EntryPoint> {
                   svgIcon("assets/icons/Bookmark.svg", color: primaryColor),
               label: "Bookmark",
             ),
-            BottomNavigationBarItem(
-              icon: svgIcon("assets/icons/Bag.svg"),
-              activeIcon: svgIcon("assets/icons/Bag.svg", color: primaryColor),
-              label: "Cart",
-            ),
+
             BottomNavigationBarItem(
               icon: svgIcon("assets/icons/Profile.svg"),
               activeIcon:

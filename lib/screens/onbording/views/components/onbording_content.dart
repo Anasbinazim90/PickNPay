@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shop/constants.dart';
 
-import '../../../../constants.dart';
-
-class OnbordingContent extends StatelessWidget {
-  const OnbordingContent({
+class OnboardingContent extends StatelessWidget {
+  const OnboardingContent({
     super.key,
     this.isTextOnTop = false,
     required this.title,

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "187863799475",
+    "project_id": "picknpay-auth",
+    "storage_bucket": "picknpay-auth.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:187863799475:android:e1b3de8305f080a34282c6",
+        "android_client_info": {
+          "package_name": "com.example.PickNPay"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBg32N2hzvWbhCghtKEXHy4jvsWQZfnSpw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,35 +1,42 @@
+
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:shop/Controller/cart_controller/cart_controller.dart';
+import 'package:shop/Controller/product_detail_controller/product_buy_now_controller.dart';
 import 'package:shop/components/cart_button.dart';
 import 'package:shop/components/custom_modal_bottom_sheet.dart';
 import 'package:shop/components/network_image_with_loader.dart';
+import 'package:shop/constants.dart';
+import 'package:shop/models/ProductModel/product_model.dart';
 import 'package:shop/screens/product/views/added_to_cart_message_screen.dart';
 import 'package:shop/screens/product/views/components/product_list_tile.dart';
+import 'package:shop/screens/product/views/components/product_quantity.dart';
+import 'package:shop/screens/product/views/components/selected_colors.dart';
+import 'package:shop/screens/product/views/components/selected_size.dart';
+import 'package:shop/screens/product/views/components/unit_price.dart';
 import 'package:shop/screens/product/views/location_permission_store_availability_screen.dart';
-import 'package:shop/screens/product/views/size_guide_screen.dart';
 
-import '../../../constants.dart';
-import 'components/product_quantity.dart';
-import 'components/selected_colors.dart';
-import 'components/selected_size.dart';
-import 'components/unit_price.dart';
 
-class ProductBuyNowScreen extends StatefulWidget {
-  const ProductBuyNowScreen({super.key});
+class ProductBuyNowScreen extends StatelessWidget {
+  final Product product;
+  const ProductBuyNowScreen({super.key, required this.product, });
 
-  @override
-  _ProductBuyNowScreenState createState() => _ProductBuyNowScreenState();
-}
-
-class _ProductBuyNowScreenState extends State<ProductBuyNowScreen> {
   @override
   Widget build(BuildContext context) {
+
+    final CartController cartController = Get.put(CartController());    // GetX Controller for managing the state
+    final ProductBuyNowController controller = Get.put(ProductBuyNowController());
+
     return Scaffold(
       bottomNavigationBar: CartButton(
-        price: 269.4,
+        price: product.price,
         title: "Add to cart",
         subTitle: "Total price",
         press: () {
+
+          cartController.addToCart(product);
           customModalBottomSheet(
             context,
             isDismissible: false,
@@ -37,36 +44,56 @@ class _ProductBuyNowScreenState extends State<ProductBuyNowScreen> {
           );
         },
       ),
+
       body: Column(
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(
-                horizontal: defaultPadding / 2, vertical: defaultPadding),
+              horizontal: defaultPadding / 2,
+              vertical: defaultPadding,
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                // Back Button
                 const BackButton(),
-                Text(
-                  "Sleeveless Ruffle",
-                  style: Theme.of(context).textTheme.titleSmall,
+
+                // Title Text
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8.w), // Add padding for better spacing
+                    child: Text(
+                      product.title,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                        fontSize: 14.sp,
+                      ),
+                    ),
+                  ),
                 ),
+
+                // Bookmark Icon
                 IconButton(
                   onPressed: () {},
-                  icon: SvgPicture.asset("assets/icons/Bookmark.svg",
-                      color: Theme.of(context).textTheme.bodyLarge!.color),
+                  icon: SvgPicture.asset(
+                    "assets/icons/Bookmark.svg",
+                    color: Theme.of(context).textTheme.bodyLarge!.color,
+                  ),
                 ),
               ],
             ),
           ),
+
           Expanded(
             child: CustomScrollView(
               slivers: [
-                const SliverToBoxAdapter(
+                 SliverToBoxAdapter(
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: defaultPadding),
                     child: AspectRatio(
                       aspectRatio: 1.05,
-                      child: NetworkImageWithLoader(productDemoImg1),
+                      child: NetworkImageWithLoader(product.image, radius: defaultBorderRadious, fit: BoxFit.contain,),
                     ),
                   ),
                 ),
@@ -76,21 +103,21 @@ class _ProductBuyNowScreenState extends State<ProductBuyNowScreen> {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Expanded(
+                        Expanded(
                           child: UnitPrice(
-                            price: 145,
-                            priceAfterDiscount: 134.7,
+                            priceAfterDiscount: product.price,  // Pass the priceAfterDiscount from the product
                           ),
                         ),
                         ProductQuantity(
-                          numOfItem: 2,
-                          onIncrement: () {},
-                          onDecrement: () {},
+                          numOfItem: controller.quantity.value,
+                          onIncrement: controller.incrementQuantity,
+                          onDecrement: controller.decrementQuantity,
                         ),
                       ],
                     ),
                   ),
                 ),
+
                 const SliverToBoxAdapter(child: Divider()),
                 SliverToBoxAdapter(
                   child: SelectedColors(
@@ -119,17 +146,17 @@ class _ProductBuyNowScreenState extends State<ProductBuyNowScreen> {
                     svgSrc: "assets/icons/Sizeguid.svg",
                     isShowBottomBorder: true,
                     press: () {
-                      customModalBottomSheet(
-                        context,
-                        height: MediaQuery.of(context).size.height * 0.9,
-                        child: const SizeGuideScreen(),
-                      );
+                      // customModalBottomSheet(
+                      //   context,
+                      //   height: MediaQuery.of(context).size.height * 0.9,
+                      //   child: const SizeGuideScreen(),
+                      // );
                     },
                   ),
                 ),
                 SliverPadding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: defaultPadding),
+                  const EdgeInsets.symmetric(horizontal: defaultPadding),
                   sliver: SliverToBoxAdapter(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

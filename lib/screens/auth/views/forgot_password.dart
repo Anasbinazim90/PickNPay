@@ -1,277 +1,211 @@
-// import 'dart:ui';
-// import 'package:flutter/material.dart';
-// import 'package:shop/constants.dart';
-
-// class ForgotPasswordScreen extends StatelessWidget {
-//   const ForgotPasswordScreen({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Stack(
-//         children: [
-//           /////////// ******* BackGround Section ****** //////////
-//           Column(
-//             children: [
-//               Expanded(
-//                 flex: 3,
-//                 child: Stack(
-//                   children: [
-//                     Container(
-//                       decoration: const BoxDecoration(
-//                         gradient: LinearGradient(colors: [
-//                           Color(0xFF7B61FF),
-//                           Color(0xFFD7D0FF),
-//                         ]),
-//                       ),
-//                     ),
-//                     // Back Button
-//                     Positioned(
-//                       top: MediaQuery.of(context).padding.top + 10,
-//                       left: 10,
-//                       child: IconButton(
-//                         icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
-//                         onPressed: () {
-//                           Navigator.pop(context);
-//                         },
-//                       ),
-//                     ),
-//                   ],
-//                 ),
-//               ),
-//             ],
-//           ),
-//           ///////// ****** Glass Effect with Forgot Password UI ****** ///////////
-//           Column(
-//             mainAxisAlignment: MainAxisAlignment.center,
-//             children: [
-//               const Text(
-//                 "Forgot Password",
-//                 style: TextStyle(
-//                     fontWeight: FontWeight.bold,
-//                     fontSize: 25,
-//                     color: Colors.white),
-//               ),
-//               const SizedBox(
-//                 height: 10,
-//               ),
-//               const Padding(
-//                 padding: EdgeInsets.symmetric(horizontal: 20),
-//                 child: Text(
-//                   textAlign: TextAlign.center,
-//                   "Enter your email address to reset your password",
-//                   style: TextStyle(fontSize: 14, color: Colors.white),
-//                 ),
-//               ),
-//               const SizedBox(
-//                 height: 30,
-//               ),
-//               Container(
-//                 height: 200,
-//                 width: double.infinity,
-//                 margin: const EdgeInsets.symmetric(horizontal: 30),
-//                 decoration: BoxDecoration(
-//                   border: Border.all(color: Colors.white),
-//                   borderRadius: BorderRadius.circular(15),
-//                   color: Colors.white.withOpacity(0.1),
-//                 ),
-//                 child: ClipRRect(
-//                   borderRadius: BorderRadius.circular(20),
-//                   child: BackdropFilter(
-//                     filter: ImageFilter.blur(sigmaY: 20, sigmaX: 20),
-//                     child: Padding(
-//                       padding: const EdgeInsets.all(25),
-//                       child: Column(
-//                         crossAxisAlignment: CrossAxisAlignment.start,
-//                         children: [
-//                           const Spacer(),
-//                           const Text(
-//                             "Email",
-//                             style: TextStyle(
-//                                 fontWeight: FontWeight.bold,
-//                                 fontSize: 15,
-//                                 color: Colors.white),
-//                           ),
-//                           const SizedBox(
-//                             height: 10,
-//                           ),
-//                           TextFormField(
-//                             decoration: InputDecoration(
-//                               prefixIcon: const Icon(Icons.email,
-//                                   color: Color(0xFF7B61FF)),
-//                               hintText: 'Email',
-//                               filled: true,
-//                               fillColor: Colors.white.withOpacity(0.5),
-//                               enabledBorder: OutlineInputBorder(
-//                                 borderSide: const BorderSide(color: Colors.white),
-//                                 borderRadius: BorderRadius.circular(20),
-//                               ),
-//                               focusedBorder: OutlineInputBorder(
-//                                 borderSide: const BorderSide(
-//                                     color: Color(0xFF7B61FF), width: 2.0),
-//                                 borderRadius: BorderRadius.circular(8.0),
-//                               ),
-//                               border: OutlineInputBorder(
-//                                 borderSide:
-//                                 const BorderSide(color: Color(0xFF7B61FF)),
-//                                 borderRadius: BorderRadius.circular(8),
-//                               ),
-//                             ),
-//                             keyboardType: TextInputType.emailAddress,
-//                             style: const TextStyle(
-//                                 color: Colors.black,
-//                                 fontSize:
-//                                 12), // Customize text style if needed
-//                           ),
-//                           const Spacer(),
-//                           Container(
-//                             height: 40,
-//                             width: double.infinity,
-//                             decoration: BoxDecoration(
-//                                 color: primaryColor,
-//                                 borderRadius: BorderRadius.circular(30)),
-//                             alignment: Alignment.center,
-//                             child: const Text("Reset Password",
-//                                 style: TextStyle(
-//                                   fontWeight: FontWeight.bold,
-//                                   fontSize: 16,
-//                                   color: Colors.white,
-//                                 )),
-//                           ),
-//                           const Spacer(),
-//                         ],
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//               ),
-//             ],
-//           )
-//         ],
-//       ),
-//     );
-//   }
-// }
-
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shop/constants.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
-  final _formKey = GlobalKey<FormState>();
-
-  ForgotPasswordScreen({super.key});
+  const ForgotPasswordScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(),
-      body: LogoWithTitle(
-        title: 'Forgot Password',
-        subText: "Enter your email address to reset your password",
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: Form(
-              key: _formKey,
-              child: TextFormField(
-                decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.phone, color: Color(0xFF7B61FF)),
-                  hintText: 'Phone Number',
-                  filled: true,
-                  fillColor: Colors.white.withOpacity(0.5),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Color(0xFF7B61FF)),
-                    borderRadius: BorderRadius.circular(20),
+      appBar: AppBar(
+
+        backgroundColor: Colors.white,
+      ),
+      body: SafeArea(
+        child: SizedBox(
+          width: double.infinity,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  const SizedBox(height: 16),
+                  const Text(
+                    "OTP Verification",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                  border: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Color(0xFF7B61FF)),
-                    borderRadius: BorderRadius.circular(8),
+                  const SizedBox(height: 8),
+                  const Text(
+                    "We sent your code to your email \nThis code will expired in 00:30",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Color(0xFF757575)),
                   ),
-                ),
-                keyboardType: TextInputType.phone,
-                style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 12), // Customize text style if needed
+                  // const SizedBox(height: 16),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.1),
+                  const OtpForm(),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.2),
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text(
+                      "Resend OTP Code",
+                      style: TextStyle(color: Color(0xFF757575)),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
-          ElevatedButton(
-            onPressed: () {
-              if (_formKey.currentState!.validate()) {
-                _formKey.currentState!.save();
-              }
-            },
-            style: ElevatedButton.styleFrom(
-              elevation: 0,
-              backgroundColor: const Color(0xFF7B61FF),
-              foregroundColor: Colors.white,
-              minimumSize: const Size(double.infinity, 48),
-              shape: const StadiumBorder(),
-            ),
-            child: const Text("Next"),
-          ),
-        ],
+        ),
       ),
     );
   }
 }
 
-class LogoWithTitle extends StatelessWidget {
-  final String title, subText;
-  final List<Widget> children;
+const authOutlineInputBorder = OutlineInputBorder(
+  borderSide: BorderSide(color: Color(0xFF757575)),
+  borderRadius: BorderRadius.all(Radius.circular(12)),
+);
 
-  const LogoWithTitle(
-      {super.key,
-      required this.title,
-      this.subText = '',
-      required this.children});
+class OtpForm extends StatelessWidget {
+  const OtpForm({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: LayoutBuilder(builder: (context, constraints) {
-        return SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Column(
+    return Form(
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              SizedBox(height: constraints.maxHeight * 0.1),
-              SvgPicture.asset(
-                "assets/logo/picknpay.svg",
-                colorFilter: ColorFilter.mode(
-                    Theme.of(context).iconTheme.color!, BlendMode.srcIn),
-                height: 50,
-                width: 100,
-              ),
               SizedBox(
-                height: constraints.maxHeight * 0.1,
-                width: double.infinity,
-              ),
-              Text(
-                title,
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineSmall!
-                    .copyWith(fontWeight: FontWeight.bold),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: Text(
-                  subText,
+                height: 64,
+                width: 64,
+                child: TextFormField(
+                  onSaved: (pin) {},
+                  onChanged: (pin) {
+                    if (pin.isNotEmpty) {
+                      FocusScope.of(context).nextFocus();
+                    }
+                  },
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [
+                    LengthLimitingTextInputFormatter(1),
+                    FilteringTextInputFormatter.digitsOnly,
+                  ],
+                  style: Theme.of(context).textTheme.titleLarge,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    height: 1.5,
-                    color: Theme.of(context)
-                        .textTheme
-                        .bodyLarge!
-                        .color!
-                        .withOpacity(0.64),
-                  ),
+                  decoration: InputDecoration(
+                      hintText: "0",
+                      hintStyle: const TextStyle(color: Color(0xFF757575)),
+                      border: authOutlineInputBorder,
+                      enabledBorder: authOutlineInputBorder,
+                      focusedBorder: authOutlineInputBorder.copyWith(
+                          borderSide:
+                          const BorderSide(color: primaryColor))),
                 ),
               ),
-              ...children,
+              SizedBox(
+                height: 64,
+                width: 64,
+                child: TextFormField(
+                  onSaved: (pin) {},
+                  onChanged: (pin) {
+                    if (pin.isNotEmpty) {
+                      FocusScope.of(context).nextFocus();
+                    }
+                  },
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [
+                    LengthLimitingTextInputFormatter(1),
+                    FilteringTextInputFormatter.digitsOnly,
+                  ],
+                  style: Theme.of(context).textTheme.titleLarge,
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration(
+                      hintText: "0",
+                      hintStyle: const TextStyle(color: Color(0xFF757575)),
+                      border: authOutlineInputBorder,
+                      enabledBorder: authOutlineInputBorder,
+                      focusedBorder: authOutlineInputBorder.copyWith(
+                          borderSide:
+                          const BorderSide(color: primaryColor))),
+                ),
+              ),
+              SizedBox(
+                height: 64,
+                width: 64,
+                child: TextFormField(
+                  onSaved: (pin) {},
+                  onChanged: (pin) {
+                    if (pin.isNotEmpty) {
+                      FocusScope.of(context).nextFocus();
+                    }
+                  },
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [
+                    LengthLimitingTextInputFormatter(1),
+                    FilteringTextInputFormatter.digitsOnly,
+                  ],
+                  style: Theme.of(context).textTheme.titleLarge,
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration(
+                      hintText: "0",
+                      hintStyle: const TextStyle(color: Color(0xFF757575)),
+                      border: authOutlineInputBorder,
+                      enabledBorder: authOutlineInputBorder,
+                      focusedBorder: authOutlineInputBorder.copyWith(
+                          borderSide:
+                          const BorderSide(color: primaryColor))),
+                ),
+              ),
+              SizedBox(
+                height: 64,
+                width: 64,
+                child: TextFormField(
+                  onSaved: (pin) {},
+                  onChanged: (pin) {
+                    if (pin.isNotEmpty) {
+                      FocusScope.of(context).nextFocus();
+                    }
+                  },
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [
+                    LengthLimitingTextInputFormatter(1),
+                    FilteringTextInputFormatter.digitsOnly,
+                  ],
+                  style: Theme.of(context).textTheme.titleLarge,
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration(
+                      hintText: "0",
+                      hintStyle: TextStyle(color: Color(0xFF757575)),
+                      border: authOutlineInputBorder,
+                      enabledBorder: authOutlineInputBorder,
+                      focusedBorder: authOutlineInputBorder.copyWith(
+                          borderSide:
+                          const BorderSide(color: primaryColor))),
+                ),
+              ),
             ],
           ),
-        );
-      }),
+          const SizedBox(height: 24),
+          Container(
+            height: 50.h,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                gradient: LinearGradient(
+                    colors: [
+                      primaryColor,
+                      // Color.fromRGBO(143, 148, 251, 1),
+                      Color.fromRGBO(143, 148, 251, .6),
+                    ]
+                )
+            ),
+            child: Center(
+              child: Text("Continue", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),),
+            ),
+
+        ],
+      ),
     );
   }
 }
